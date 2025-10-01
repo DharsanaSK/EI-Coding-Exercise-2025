@@ -13,6 +13,6 @@ public class ActivatePanelsCommand implements Command {
     @Override
     public void execute() {
         satellite.activatePanels();
-        LoggerUtil.log("Solar panels activated");
+        LoggerUtil.log("Satellite panels activated");
     }
 }

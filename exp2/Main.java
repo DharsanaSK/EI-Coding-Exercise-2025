@@ -11,14 +11,16 @@ public class Main {
         CommandInvoker invoker = new CommandInvoker(satellite);
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Satellite Command System");
+        System.out.println("----------SATELLITE COMMAND SYSTEM-------------");
         System.out.println("Available commands: rotate <direction>, activatePanels, deactivatePanels, collectData, status, exit");
 
-        while (true) {
+        boolean running=true;
+        while (running) {
             System.out.print("> ");
             String input = scanner.nextLine().trim();
 
             if (input.equalsIgnoreCase("exit")) {
+                running=false;
                 break;
             }
 
@@ -31,6 +33,6 @@ public class Main {
         }
 
         scanner.close();
-        System.out.println("Exiting Satellite Command System.");
+        System.out.println("-------EXITING SATELLITE COMMAND SYSTEM----------");
     }
 }

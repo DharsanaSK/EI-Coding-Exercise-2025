@@ -14,6 +14,6 @@ public class DeactivatePanelsCommand implements Command {
     @Override
     public void execute() {
         satellite.deactivatePanels();
-        LoggerUtil.log("Solar panels deactivated");
+        LoggerUtil.log("Satellite panels deactivated");
     }
 }

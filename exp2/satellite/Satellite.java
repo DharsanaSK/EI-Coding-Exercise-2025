@@ -51,7 +51,7 @@ public class Satellite {
     @Override
     public String toString() {
         return "Orientation: " + orientation +
-               "\nSolar Panels: " + getPanelStatus()+
+               "\nPanel Status: " + getPanelStatus()+
                "\nData Collected: " + dataCollected;
     }
 }
