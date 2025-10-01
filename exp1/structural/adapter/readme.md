@@ -1,4 +1,3 @@
-Structural design patterns
 (I)Adapter pattern:
         Acts as a bridge between two incompatible interfaces,allowing them to work together.
     
@@ -19,6 +18,6 @@ How it Works?
 4)If the type is unsupported, the adapter rejects it gracefully.
 
 Why Adapter Pattern?
->>Without adapter → Client must know every player (Mp3Player, Mp4Player, etc.).
->>With adapter → Client just calls play().
->>Easy to extend → Adding new formats (AVI, MKV, WAV) requires changes only in MediaAdapter.java, not in the client.
+⦁  Without adapter → Client must know every player (Mp3Player, Mp4Player, etc.).
+⦁  With adapter → Client just calls play().
+⦁  Easy to extend → Adding new formats (AVI, MKV, WAV) requires changes only in MediaAdapter.java, not in the client.
