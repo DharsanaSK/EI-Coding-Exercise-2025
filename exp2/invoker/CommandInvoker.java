@@ -27,18 +27,18 @@ public class CommandInvoker {
             case "rotate":
                 if (parts.length < 2) throw new InvalidCommandException("Rotate command requires a direction");
                 String inputDirection = parts[1].trim();
-        // Normalize input
-        String formattedDirection = inputDirection.substring(0,1).toUpperCase() 
+                // input validation
+                String formattedDirection = inputDirection.substring(0,1).toUpperCase() 
                                     + inputDirection.substring(1).toLowerCase();
 
-        List<String> validDirections = Arrays.asList("North", "South", "East", "West");
+                List<String> validDirections = Arrays.asList("North", "South", "East", "West");
 
-        if (!validDirections.contains(formattedDirection)) {
-            LoggerUtil.log("Invalid rotation direction: " + inputDirection);
-            command = null; 
-        } else {
-            command = new RotateCommand(satellite, formattedDirection);
-        }
+                if (!validDirections.contains(formattedDirection)) {
+                    LoggerUtil.log("Invalid rotation direction: " + inputDirection);
+                    command = null; }
+                else {
+                    command = new RotateCommand(satellite, formattedDirection);
+                }
                 break;
 
             case "activatepanels":
@@ -61,7 +61,7 @@ public class CommandInvoker {
                 throw new InvalidCommandException("Unknown command: " + cmd);
         }
 
-        // Execute immediately
+        // Execute
         try {
             command.execute();
         } catch (Exception e) {
