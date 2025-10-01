@@ -1,13 +1,17 @@
 package exp2.satellite;
 
+import exp2.state.ActiveState;
+import exp2.state.InactiveState;
+import exp2.state.PanelState;
+
 public class Satellite {
     private String orientation;
-    private boolean solarPanelsActive;
+    private PanelState panelState;
     private int dataCollected;
 
     public Satellite() {
         this.orientation = "North";
-        this.solarPanelsActive = false;
+        this.panelState = new InactiveState();
         this.dataCollected = 0;
     }
 
@@ -16,35 +20,38 @@ public class Satellite {
     }
 
     public void activatePanels() {
-        this.solarPanelsActive = true;
+        this.panelState = new ActiveState();
     }
 
     public void deactivatePanels() {
-        this.solarPanelsActive = false;
+        this.panelState = new InactiveState();
     }
 
     public void collectData() {
-        if (solarPanelsActive) {
-            this.dataCollected += 10;
-        }
+        panelState.collectData(this);
+        
     }
 
     public String getOrientation() {
         return orientation;
     }
 
-    public boolean isSolarPanelsActive() {
-        return solarPanelsActive;
-    }
-
     public int getDataCollected() {
         return dataCollected;
+    }
+
+     public void setDataCollected(int dataCollected) {
+        this.dataCollected = dataCollected;
+    }
+
+    public String getPanelStatus() {
+        return (panelState instanceof ActiveState) ? "Active" : "Inactive";
     }
 
     @Override
     public String toString() {
         return "Orientation: " + orientation +
-               "\nSolar Panels: " + (solarPanelsActive ? "Active" : "Inactive") +
+               "\nSolar Panels: " + getPanelStatus()+
                "\nData Collected: " + dataCollected;
     }
 }

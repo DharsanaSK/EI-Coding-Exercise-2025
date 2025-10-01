@@ -3,6 +3,9 @@ package exp2.invoker;
 import exp2.command.*;
 import exp2.exceptions.InvalidCommandException;
 import exp2.satellite.Satellite;
+import exp2.utils.LoggerUtil;
+import java.util.Arrays;
+import java.util.List;
 
 public class CommandInvoker {
    
@@ -23,8 +26,19 @@ public class CommandInvoker {
         switch (cmd) {
             case "rotate":
                 if (parts.length < 2) throw new InvalidCommandException("Rotate command requires a direction");
-                String direction = parts[1];
-                command = new RotateCommand(satellite, direction);
+                String inputDirection = parts[1].trim();
+        // Normalize input
+        String formattedDirection = inputDirection.substring(0,1).toUpperCase() 
+                                    + inputDirection.substring(1).toLowerCase();
+
+        List<String> validDirections = Arrays.asList("North", "South", "East", "West");
+
+        if (!validDirections.contains(formattedDirection)) {
+            LoggerUtil.log("Invalid rotation direction: " + inputDirection);
+            command = null; 
+        } else {
+            command = new RotateCommand(satellite, formattedDirection);
+        }
                 break;
 
             case "activatepanels":
@@ -51,7 +65,7 @@ public class CommandInvoker {
         try {
             command.execute();
         } catch (Exception e) {
-            throw new InvalidCommandException("Error executing command: " + e.getMessage());
+            throw new InvalidCommandException("Error in executing command. ");
         }
 
         return "Executed command: " + cmd + (parts.length > 1 ? " " + parts[1] : "");
