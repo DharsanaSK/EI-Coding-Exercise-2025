@@ -10,13 +10,9 @@ public class CollectDataCommand implements Command {
         this.satellite = satellite;
     }
 
-    @Override
+     @Override
     public void execute() {
-        if (satellite.isSolarPanelsActive()) {
-            satellite.collectData();
-            LoggerUtil.log("Data collected successfully. Total: " + satellite.getDataCollected());
-        } else {
-            LoggerUtil.log("Cannot collect data. Panels are inactive.");
-        }
+        satellite.collectData(); // state decides behavior
+        LoggerUtil.log("Data collection attempted.");
     }
 }

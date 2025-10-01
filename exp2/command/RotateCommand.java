@@ -11,10 +11,16 @@ public class RotateCommand implements Command {
         this.satellite = satellite;
         this.direction = direction;
     }
-
     @Override
     public void execute() {
+    if (!satellite.getOrientation().equals(direction)) {
         satellite.rotate(direction);
         LoggerUtil.log("Rotated satellite to " + direction);
+    } else {
+        LoggerUtil.log("Satellite already facing " + direction);
     }
+}
+
+
+    
 }
