@@ -3,57 +3,50 @@
 ## 1. State   
 **Allows an object to alter its behavior when its internal state changes, appearing as if the object changed its class.**
 - **Usecase**: Music Player
-- The State Pattern helps by:    
-   - Encapsulating behavior associated with a particular state into separate classes.
+- The State Pattern helps by:
+   - Allowing easy addition of new media types without touching the client.    
    - Making the context (MusicPlayer) simpler by delegating state-specific behavior to state objects.
-   - Allowing easy addition of new media types without touching the client.
+   - Avoiding complex conditional logic (`if/else` or `switch`) for state handling.
 ### Components  
-1. **Target Interface** (`MediaPlayer.java`) → defines the uniform method `play(type, file)` the client expects.
-2. **Adaptees** (`Mp3Player.java`, `Mp4Player.java`) → existing incompatible classes.
-3. **Adapter** (`MediaAdapter.java`) → implements the target interface and **translates** the `play` call into the correct method on the adaptee (`Mp3Player` or `Mp4Player`).
-4. **Client** (`Main.java`) → Uses the adapter via the target interface, unaware of the adaptee details.
+1. **State** (`PlayerState.java`) → interface defining the methods (`pressPlay()`, `pressPause()`) that concrete states implement.
+2. **Concrete States** (`StoppedState.java`, `PlayingState.java`,`PausedState.java`) → represent different states of the player; implement behavior for play/pause accordingly.
+3. **Context** (`MusicPlayer.java`) → maintains a reference to the current state; delegates requests (`pressPlay()`, `pressPause()`) to the current state.
+4. **Client** (`Main.java`) → interacts with the MusicPlayer without worrying about which state it is in.
 ### Output
 ```
-Enter type (mp3/mp4/exit): mp3
-Enter file name: song.mp3
-Playing mp3 file: song.mp3
-
-Enter type (mp3/mp4/exit): mp4
-Enter file name: movie.mp4
-Playing mp4 file: movie.mp4
-
-Enter type (mp3/mp4/exit): exit
+Starting music...
+Already playing...
+Music paused.
+Already paused.
+Resuming music...
 ```
 ### Summary
-The Adapter Pattern lets a media player client play MP3 and MP4 files using a single `play()` method, even though the underlying players have different interfaces (`playMp3()`, `playMp4()`).
+- The State Pattern lets the MusicPlayer change its behavior dynamically depending on whether it is **stopped, playing, or paused**
+- The client (`Main.java`) simply calls `pressPlay()` or `pressPause()` without worrying about the internal state logic.
+- This keeps the system clean, extensible, and easy to maintain while avoiding long conditional checks inside the `MusicPlayer`.
 
 ---
 
 
-## 2. Composite   
-**Allows treating individual objects and compositions of objects uniformly, forming a part-whole hierarchy**
-- **Usecase**: Menu System
-- The Composite Pattern helps by:    
-   - Allowing clients to treat **single items (leaves)** and **groups of items (composites)** the same way.
-   - Simplifying client code, since it interacts only with the common component interface.
-   - Supporting hierarchical tree structures like menus, folders, or organizational charts.
+## 2. Strategy  
+**Defines a family of algorithms, encapsulates each one, and makes them interchangeable at runtime without changing the client code.**
+- **Usecase**: Payment System
+- The Strategy Pattern helps by:    
+   - Allowing clients to **choose different algorithms (strategies)** dynamically.
+   - Promoting the **Open/Closed Principle** – new strategies can be added without modifying existing code.
+   - Decoupling the context (e.g., ShoppingCart) from the specific implementation of the algorithm.
 ### Components  
-1. **Component** (`MenuComponent.java`) → defines the uniform method `display(indent)` that all menu items and menus implement.
-2. **Leaf** (`MenuItem.java`) → represents individual objects that **do not contain children**, e.g., a single menu item.
-3. **Composite** (`Menu.java`) → represents objects that **can contain other components**, e.g., a menu with submenus or items; implements methods to `add()` children and `display()` them.
-4. **Client** (`Main.java`) → builds the menu hierarchy and interacts with `MenuComponent` without knowing whether it is dealing with a `Leaf` or a `Composite`.
+1. **Strategy** (`PaymentStrategy.java`) → defines the common interface, e.g., `pay(amount)`.
+2. **Concrete Strategies** (`CreditCardPayment.java`,`PayPalPayment.java`,`UpiPayment.java`) →implement different payment methods.
+3. **Context** (`ShoppingCart.java`) → maintains a reference to a `PaymentStrategy` and delegates the `pay()` operation to the selected strategy.
+4. **Client** (`Main.java`) → sets the strategy at runtime and calls the context’s method without worrying about how the payment is processed.
 ### Output
 ```
-[Menu] Main Menu
-  [Menu] File
-    - New
-    - Open
-    - Save
-  [Menu] Edit
-    - Copy
-    - Paste
+500 paid using Credit Card: 1234-5678-9012
+1200 paid using PayPal account: user@example.com
+300 paid using UPI: user@upi
 ```
 ### Summary
-The Composite Pattern lets a client display an entire menu system using a single `display()` method. The client does not need to distinguish between individual menu items (`MenuItem`) and menus containing multiple items (`Menu`), making the system easy to extend and maintain.
+The Strategy Pattern lets a client choose different **algorithms or behaviors** (like payment methods) at runtime. The client interacts only with the **strategy interface**, without knowing the implementation details. This makes the system flexible, extendable, and easy to maintain.
 
 ---
