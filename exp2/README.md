@@ -42,7 +42,7 @@ Satellite-Command-System/
 ## Design Patterns Used
 
 ### 1. Command Pattern
-- Each action (rotate, activate/deactivate panels, collect data) is implemented as a **command object**.
+- Each action (**rotate, activate/deactivate panels, collect data**) is implemented as a **command object**.
 - This decouples the **sender** (user input) from the **receiver** (satellite) and allows for extending with new commands easily
 
 ### 2. State Pattern
@@ -105,7 +105,7 @@ Satellite-Command-System/
      <img width="905" height="135" alt="image" src="https://github.com/user-attachments/assets/28858407-65f5-4686-89c6-e4360660be4e" />
 
 5. **Exit**
-      <img width="897" height="65" alt="image" src="https://github.com/user-attachments/assets/3a751cc1-b3a8-40c5-90e1-ac8ab8c29a4b" />
+    <img width="897" height="65" alt="image" src="https://github.com/user-attachments/assets/3a751cc1-b3a8-40c5-90e1-ac8ab8c29a4b" />
 ---
 
 
