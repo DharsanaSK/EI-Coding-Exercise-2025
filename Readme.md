@@ -12,7 +12,10 @@
 ---
 
 # **EXERCISE-2 : Satellite Command System**
-
+## Problem Statement
+You are tasked with developing a Satellite Command System that simulates controlling a satellite in orbit. The satellite starts in a default
+initial state and can accept a series of commands to change its orientation, solar panel status, and data collection.
+## Functional Requirements
 1. **Initialize the Satellite**  
    Create a class or function that initializes the satellite's attributes to their initial state.
 
@@ -36,11 +39,11 @@ Implement a command called `collectData` that increments the **Data Collected** 
    ```java
    collectData() // sets the data collected to 10 if the solar panels are "Active"
 ---      
-**Compile using**
+## **Compile using**
  ```
   javac exp2\state\*.java exp2\satellite\*.java exp2\command\*.java exp2\invoker\*.java exp2\utils\*.java exp2\exceptions\*.java exp2\Main.java
 ```
-**Run using**    
+## **Run using**    
 ```
 java -cp . exp2.Main
 ```
