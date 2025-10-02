@@ -3,29 +3,42 @@
 The **Satellite Command System** is a console-based simulation that allows controlling a satellite in an orbit by       
 1. **Rotating the satellite**   
 2. **Changing the solar panel status(Active/Deactive)**  
-3. **Collecting data** 
-
-- **Initialize the Satellite**
-  - The satellite begins with:
-    - Orientation: `North`
-    - Solar Panels: `Inactive`
-    - Data Collected: `0`
-
-- **Rotate**
-  - Command: `rotate(<direction>)`
-  - Example: `rotate(North)` sets the satellite orientation to `North`.
-
-- **Changing the solar panel status**
-  - Commands: `activatePanels()`, `deactivatePanels()`
-  - Example: `activatePanels()` sets the solar panels to `Active`.
-
-- **Collect Data**
-  - Command: `collectData()`
-  - Collects 10 units of data **only if** solar panels are active.
-  - Example: `collectData()` increments data collected to 10 if panels are active.
-
+3. **Collecting data**
 ---
-
+## Structure 
+```
+Satellite-Command-System/
+│
+├── exp2/
+│   ├── command/                  # Command Pattern Implementation
+│   │   ├── Command.java
+│   │   ├── RotateCommand.java
+│   │   ├── ActivatePanelsCommand.java
+│   │   ├── DeactivatePanelsCommand.java
+│   │   └── CollectDataCommand.java
+│   │
+│   ├── state/                    # State Pattern Implementation
+│   │   ├── PanelState.java
+│   │   ├── ActiveState.java
+│   │   └── InactiveState.java
+│   │
+│   ├── invoker/                  # Invoker for Commands
+│   │   └── CommandInvoker.java
+│   │
+│   ├── satellite/                # Receiver (main Satellite entity)
+│   │   └── Satellite.java
+│   │
+│   ├── exceptions/               # Custom Exceptions
+│   │   └── InvalidCommandException.java
+│   │
+│   ├── utils/                    # Utility classes 
+│   │   └── LoggerUtil.java
+│   │
+│   └── Main.java                 # Client (entry point)
+│
+└── README.md                     
+```
+---
 ## Design Patterns Used
 
 ### 1. Command Pattern
@@ -43,7 +56,10 @@ The **Satellite Command System** is a console-based simulation that allows contr
   - Single Responsibility: Each command and state class handles only one responsibility.
   - Open/Closed: Easily extendable with new commands or states.
 ---
+## Class Diagram
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/b31f4fac-82fb-4e43-a0ec-f42fde17e333" />
 
+---
 ## Workflow
 
 1. **User Input**
@@ -64,15 +80,7 @@ The **Satellite Command System** is a console-based simulation that allows contr
      Data Collected: 10
      ```
 ---       
-**Compile using**
- ```
-  javac exp2\state\*.java exp2\satellite\*.java exp2\command\*.java exp2\invoker\*.java exp2\utils\*.java exp2\exceptions\*.java exp2\Main.java
-```
-**Run using**    
-```
-java -cp . exp2.Main
-```
----
+
 ## Output    
 1. **Initial status**
    - When the program starts, the satellite is in its default state.
