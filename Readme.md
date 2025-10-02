@@ -1,13 +1,13 @@
 # **EXERCISE-1**
-## I. Structural design pattern
-1. Adapter
-2. Compsoite
-## II. Behvioral design pattern
-1. State
-2. Strategy
-## III. Creational design pattern
-1. Singleton
-2. Factory
+## 1. Structural design pattern
+- Adapter
+- Compsoite
+## 2. Behvioral design pattern
+- State
+- Strategy
+## 3. Creational design pattern
+- Singleton
+- Factory
 
 ---
 
@@ -35,4 +35,13 @@ Implement a command called `collectData` that increments the **Data Collected** 
    **Example:**  
    ```java
    collectData() // sets the data collected to 10 if the solar panels are "Active"
+---      
+**Compile using**
+ ```
+  javac exp2\state\*.java exp2\satellite\*.java exp2\command\*.java exp2\invoker\*.java exp2\utils\*.java exp2\exceptions\*.java exp2\Main.java
+```
+**Run using**    
+```
+java -cp . exp2.Main
+```
 ---
