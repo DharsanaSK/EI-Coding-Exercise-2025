@@ -9,12 +9,12 @@
    - Avoiding duplicate resources (e.g., multiple log files or DB connections).
 ### Components  
 1. **Singleton** (`Logger.java`)    
-- Holds a private static instance of itself.
-- Provides a static `getInstance()` method to return that single instance.
-- Has methods to perform the actual work (e.g., `log()`).
+   - Holds a private static instance of itself.
+   - Provides a static `getInstance()` method to return that single instance.
+   - Has methods to perform the actual work (e.g., `log()`).
 2. **Client** (`Main.java`)   
-- Accesses the Singleton via `Logger.getInstance()`.
-- Verifies that multiple calls to `getInstance()` return the same object.
+   - Accesses the Singleton via `Logger.getInstance()`.
+   - Verifies that multiple calls to `getInstance()` return the same object.
 ### Output
 ```
 [LOG]: Application started.
